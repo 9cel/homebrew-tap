@@ -1,12 +1,15 @@
 class Clickity < Formula
   desc "Mechanical keyboard click sounds for macOS"
   homepage "https://github.com/9cel/type"
-  version "0.1.3"
+  version "0.1.4"
   url "https://github.com/9cel/type/releases/download/v#{version}/clickity-#{version}-arm64.tar.gz"
-  sha256 "d8ec5ee4d4bfb96ad774fef9f98e8eddb4797b83c6c990e5b29c5f26201fba54"
+  sha256 "908f95f837a78d45a979b1d00b8ba45ad7f115668af3812e5511e91052c04ea3"
   license :public_domain
 
   depends_on :macos
+
+  depends_on "libsoundio"
+  depends_on "libyaml"
 
   def install
     bin.install "clickity"
@@ -14,8 +17,6 @@ class Clickity < Formula
 
     libexec.install "ty"
     (lib/"ty").install Dir["lib/ty/*"]
-    (lib/"clickity").install "libsoundio.dylib"
-    (lib/"clickity").install "libyaml.dylib"
 
     (share/"clickity/sounds").install Dir["sounds/*"]
 
@@ -49,6 +50,8 @@ class Clickity < Formula
         clickity volume 80                   Set volume (0-100)
         clickity list                        List available profiles
         clickity status                      Show current state
+        clickity blacklist Chrome            Disable click sounds in a specific app
+        clickity blacklist -d Chrome         Re-enable click sounds in a specific app
     EOS
   end
 
