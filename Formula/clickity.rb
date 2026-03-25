@@ -12,19 +12,19 @@ class Clickity < Formula
     bin.install "clickity"
     bin.install "clickityd"
 
-    (lib/"clickity").install "ty"
+    bin.install "ty" => "clickity-ty"
+    (lib/"ty").install Dir["lib/ty/*"]
     (lib/"clickity").install "libsoundio.dylib"
     (lib/"clickity").install "libyaml.dylib"
-    (lib/"ty").install Dir["lib/ty/*"]
 
     (share/"clickity/sounds").install Dir["sounds/*"]
 
-    inreplace bin/"clickityd", %r{^#!.*$}, "#!#{lib}/clickity/ty"
-    inreplace bin/"clickity", %r{^#!.*$}, "#!#{lib}/clickity/ty"
+    inreplace bin/"clickityd", %r{^#!.*$}, "#!#{bin}/clickity-ty"
+    inreplace bin/"clickity", %r{^#!.*$}, "#!#{bin}/clickity-ty"
   end
 
   service do
-    run ["#{opt_prefix}/lib/clickity/ty", "#{opt_prefix}/bin/clickityd"]
+    run ["#{opt_prefix}/bin/clickity-ty", "#{opt_prefix}/bin/clickityd"]
     keep_alive true
     log_path var/"log/clickity.log"
     error_log_path var/"log/clickity.log"
@@ -37,7 +37,7 @@ class Clickity < Formula
 
       To grant permission:
         System Settings > Privacy & Security > Accessibility
-        Add and enable: #{opt_lib}/clickity/ty
+        Add and enable: #{opt_prefix}/bin/clickity-ty
 
       Start the daemon:
         brew services start clickity
