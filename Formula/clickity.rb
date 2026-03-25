@@ -3,7 +3,7 @@ class Clickity < Formula
   homepage "https://github.com/9cel/type"
   version "0.1.0"
   url "https://github.com/9cel/type/releases/download/v#{version}/clickity-#{version}-arm64.tar.gz"
-  sha256 "PLACEHOLDER"
+  sha256 "1c14b76c7c604a54eeb1d349165b35e8e096cb456c7ed1394484c5891d91f8c2"
   license "MIT"
 
   depends_on :macos
