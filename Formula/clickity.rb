@@ -24,7 +24,7 @@ class Clickity < Formula
   end
 
   service do
-    run [opt_lib/"clickity/ty", opt_bin/"clickityd"]
+    run ["#{opt_prefix}/lib/clickity/ty", "#{opt_prefix}/bin/clickityd"]
     keep_alive true
     log_path var/"log/clickity.log"
     error_log_path var/"log/clickity.log"
