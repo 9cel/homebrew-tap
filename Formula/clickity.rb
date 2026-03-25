@@ -13,9 +13,9 @@ class Clickity < Formula
     bin.install "clickityd"
 
     (lib/"clickity").install "ty"
-    (lib/"clickity/lib").install Dir["lib/*"]
     (lib/"clickity").install "libsoundio.dylib"
     (lib/"clickity").install "libyaml.dylib"
+    (lib/"ty").install Dir["lib/ty/*"]
 
     (share/"clickity/sounds").install Dir["sounds/*"]
 
