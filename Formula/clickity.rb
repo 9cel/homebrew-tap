@@ -1,10 +1,9 @@
 class Clickity < Formula
   desc "Mechanical keyboard click sounds for macOS"
   homepage "https://github.com/9cel/type"
-  url "https://github.com/9cel/type/releases/download/v#{version}/clickity-#{version}-arm64.tar.gz"
-
-  sha256 "PLACEHOLDER"
   version "0.1.0"
+  url "https://github.com/9cel/type/releases/download/v#{version}/clickity-#{version}-arm64.tar.gz"
+  sha256 "PLACEHOLDER"
   license "MIT"
 
   depends_on :macos
