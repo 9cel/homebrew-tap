@@ -1,9 +1,9 @@
 class Clickity < Formula
   desc "Mechanical keyboard click sounds for macOS"
   homepage "https://github.com/9cel/type"
-  version "0.1.1"
+  version "0.1.2"
   url "https://github.com/9cel/type/releases/download/v#{version}/clickity-#{version}-arm64.tar.gz"
-  sha256 "9521c0c7138b2f99f6fb2ddc0967de0d1f575533d29e993ff783bfe9d32dd2a4"
+  sha256 "c438bcadb52cfc05dc92810681f048a82ad42ed29d2a2781323d047821ccdfb0"
   license "MIT"
 
   depends_on :macos
@@ -12,19 +12,19 @@ class Clickity < Formula
     bin.install "clickity"
     bin.install "clickityd"
 
-    bin.install "ty" => "clickity-ty"
+    libexec.install "ty"
     (lib/"ty").install Dir["lib/ty/*"]
     (lib/"clickity").install "libsoundio.dylib"
     (lib/"clickity").install "libyaml.dylib"
 
     (share/"clickity/sounds").install Dir["sounds/*"]
 
-    inreplace bin/"clickityd", %r{^#!.*$}, "#!#{bin}/clickity-ty"
-    inreplace bin/"clickity", %r{^#!.*$}, "#!#{bin}/clickity-ty"
+    inreplace bin/"clickityd", %r{^#!.*$}, "#!#{libexec}/ty"
+    inreplace bin/"clickity", %r{^#!.*$}, "#!#{libexec}/ty"
   end
 
   service do
-    run ["#{opt_prefix}/bin/clickity-ty", "#{opt_prefix}/bin/clickityd"]
+    run ["#{opt_prefix}/libexec/ty", "#{opt_prefix}/bin/clickityd"]
     keep_alive true
     log_path var/"log/clickity.log"
     error_log_path var/"log/clickity.log"
@@ -37,7 +37,7 @@ class Clickity < Formula
 
       To grant permission:
         System Settings > Privacy & Security > Accessibility
-        Add and enable: #{opt_prefix}/bin/clickity-ty
+        Hit + then Cmd+Shift+G and paste: #{opt_prefix}/libexec/ty
 
       Start the daemon:
         brew services start clickity
