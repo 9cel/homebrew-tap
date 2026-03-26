@@ -1,15 +1,16 @@
 class Clickity < Formula
   desc "Mechanical keyboard click sounds for macOS"
   homepage "https://github.com/9cel/type"
-  version "0.1.4"
+  version "0.1.5"
   url "https://github.com/9cel/type/releases/download/v#{version}/clickity-#{version}-arm64.tar.gz"
-  sha256 "908f95f837a78d45a979b1d00b8ba45ad7f115668af3812e5511e91052c04ea3"
+  sha256 "65e2ec31f8e6e848a7415e62a273dde49ea8b218957fc7a90c2a0079976f21e0"
   license :public_domain
 
   depends_on :macos
+  depends_on arch: :arm64
 
-  depends_on "libsoundio"
   depends_on "libyaml"
+  depends_on "libvorbis"
 
   def install
     bin.install "clickity"
